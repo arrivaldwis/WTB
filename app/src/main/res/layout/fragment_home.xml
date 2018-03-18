@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.infan.wtb.MainActivity"
+    android:background="#514e4e">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_wtb_2"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#514e4e">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_margin="16dp"
+                android:weightSum="2"
+                android:background="#fff"
+                android:padding="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:text="Laptop"
+                    android:drawableTop="@drawable/laptop_icon"
+                    android:id="@+id/btnLaptop"
+                    style="?android:attr/borderlessButtonStyle" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/computer_icon"
+                    android:text="PC"
+                    android:id="@+id/btnPc"
+                    style="?android:attr/borderlessButtonStyle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="20dp"
+                android:layout_margin="16dp"
+                android:background="#fff"
+                android:padding="20dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/phone_icon"
+                    android:text="handphone"
+                    android:id="@+id/btnHp"
+                    style="?android:attr/borderlessButtonStyle"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/keyboard_icon"
+                    android:text="peripheral"
+                    android:id="@+id/btnPeri"
+                    style="?android:attr/borderlessButtonStyle"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

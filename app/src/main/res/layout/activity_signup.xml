@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.infan.wtb.LoginActivity"
+    android:background="#514e4e">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginTop="60dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_wtb_2"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:background="#fff"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="20dp"
+                android:text="Sign Up"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:background="#fff">
+                <EditText
+                    android:id="@+id/txtEmail"
+                    android:background="@drawable/box_edit_text"
+                    android:layout_width="match_parent"
+                    android:padding="15dp"
+                    android:layout_height="50dp"
+                    android:hint="Email"/>
+                <EditText
+                    android:id="@+id/txtPassword"
+                    android:background="@drawable/box_edit_text"
+                    android:layout_marginTop="10dp"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Password"/>
+                <EditText
+                    android:id="@+id/txtFname"
+                    android:background="@drawable/box_edit_text"
+                    android:layout_marginTop="10dp"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="First Name"/>
+                <EditText
+                    android:id="@+id/txtLname"
+                    android:background="@drawable/box_edit_text"
+                    android:layout_marginTop="10dp"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Last Name"/>
+                <EditText
+                    android:id="@+id/txtLname"
+                    android:background="@drawable/box_edit_text"
+                    android:layout_marginTop="10dp"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Hobby"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="DONE"
+                    android:textColor="#fff"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/btnDone"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.infan.wtb.FormPerson"
+    android:background="#514e4e">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/toolbar"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_wtb_2"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_white"
+            android:padding="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Who are you?"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:textColor="#fff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/circle_white"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Student"
+                android:textColor="#fff"
+                android:id="@+id/btn1"
+                android:drawableTop="@drawable/education_student"/>
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/circle_white"
+                android:backgroundTint="@color/colorPrimary"
+                android:drawableTop="@drawable/gamecenter"
+                android:id="@+id/btn2"
+                android:text="Gamer"
+                android:textColor="#fff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/circle_white"
+                android:backgroundTint="@color/colorPrimary"
+                android:id="@+id/btn3"
+                android:drawableTop="@drawable/briefcase"
+                android:text="Office"
+                android:textColor="#fff"
+                android:layout_marginRight="40dp"/>
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/circle_white"
+                android:backgroundTint="@color/colorPrimary"
+                android:id="@+id/btn4"
+                android:drawableTop="@drawable/arts"
+                android:text="Graphic Designer"
+                android:textColor="#fff"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

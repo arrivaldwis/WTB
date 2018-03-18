@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "266540644312",
+    "firebase_url": "https://what-to-buy-a5f7d.firebaseio.com",
+    "project_id": "what-to-buy-a5f7d",
+    "storage_bucket": "what-to-buy-a5f7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266540644312:android:ec58c418a73a109a",
+        "android_client_info": {
+          "package_name": "com.infan.wtb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266540644312-svk284t0ugumpabfi64lftq1r11b1nev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.infan.wtb",
+            "certificate_hash": "83091aa3c94d41ae88341d7905eb3f6ae2bfa68d"
+          }
+        },
+        {
+          "client_id": "266540644312-psomqct2a4jkugt9gqbp7endkkhn9k7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiUin62K_RLP4dMztM31W5rLRb3gP9d6E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266540644312-psomqct2a4jkugt9gqbp7endkkhn9k7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
