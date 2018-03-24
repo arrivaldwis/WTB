@@ -3,18 +3,24 @@ package com.infan.wtb.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.infan.wtb.App;
 import com.infan.wtb.DetailActivity;
+import com.infan.wtb.Model.BarangTypeModel;
 import com.infan.wtb.R;
 import com.infan.wtb.Model.BarangModel;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -23,11 +29,14 @@ import java.util.ArrayList;
 
 public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder> {
     ArrayList<BarangModel> list;
+    ArrayList<ArrayList<BarangTypeModel>> barangCompareList;
     Context context;
+    final String[] arrayType = {"designer", "student", "office", "gamer"};
 
-    public BarangAdapter(ArrayList<BarangModel> list,Context context){
+    public BarangAdapter(ArrayList<BarangModel> list, Context context, ArrayList<ArrayList<BarangTypeModel>> barangCompare){
         this.list = list;
         this.context = context;
+        this.barangCompareList = barangCompare;
     }
 
     @Override
@@ -44,6 +53,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
         private ImageView imgFoto;
         private BarangModel data;
         private LinearLayout linearLayoutRow;
+        private LinearLayout llCompare;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -51,6 +61,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             tvDeskripsi = (TextView) itemView.findViewById(R.id.tvDeskripsi);
             imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
             linearLayoutRow = (LinearLayout) itemView.findViewById(R.id.linearLayoutRow);
+            llCompare = (LinearLayout) itemView.findViewById(R.id.llCompare);
 
             itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -69,9 +80,15 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
         }
     }
 
+    int designer = 0;
+    int student = 0;
+    int gamer = 0;
+    int office = 0;
+
     @Override
     public void onBindViewHolder (ViewHolder holder,int position) {
         final BarangModel data = list.get(position);
+
         holder.tvNama.setText(data.getNama());
         holder.tvDeskripsi.setText(data.getDeskripsi());
         try{
@@ -87,6 +104,50 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
                 context.startActivity(intent);
             }
         });
+
+        for (ArrayList<BarangTypeModel> x: barangCompareList) {
+            for (BarangTypeModel b:x) {
+                //Toast.makeText(context, b.getBarang().getNama() + " - "+b.getType()+": "+b.getSum(), Toast.LENGTH_SHORT).show();
+                if(b.type.equals("student"))
+                    student = b.getSum();
+                if(b.type.equals("designer"))
+                    designer = b.getSum();
+                if(b.type.equals("office"))
+                    office = b.getSum();
+                if(b.type.equals("gamer"))
+                    gamer = b.getSum();
+            }
+        }
+
+        for (String s:arrayType) {
+            LinearLayout ll = new LinearLayout(context);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+            TextView tv = new TextView(context);
+            int progress = 0;
+
+            ProgressBar p = new ProgressBar(context,
+                    null,
+                    android.R.attr.progressBarStyleHorizontal);
+            p.setMax(4);
+
+            if(s.equals("student"))
+                progress = student;
+            if(s.equals("designer"))
+                progress = designer;
+            if(s.equals("office"))
+                progress = office;
+            if(s.equals("gamer"))
+                progress = gamer;
+
+            tv.setText(s+"("+progress+")");
+
+            p.setProgress(progress);
+
+            ll.addView(tv);
+            ll.addView(p);
+            holder.llCompare.addView(ll);
+        }
+
         //animate(holder);
     }
 

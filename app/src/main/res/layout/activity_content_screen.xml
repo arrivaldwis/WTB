@@ -8,7 +8,7 @@
     android:background="#514e4e"
     tools:context="com.infan.wtb.ContentScreen">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimary"
@@ -19,7 +19,17 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logo_wtb_2"
             android:padding="10dp"/>
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arts"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:tint="#fff"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

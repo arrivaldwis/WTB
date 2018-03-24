@@ -37,7 +37,17 @@
                 android:layout_marginTop="6dp"
                 android:maxLines="5"
                 android:text="Deskripsi"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/llCompare"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

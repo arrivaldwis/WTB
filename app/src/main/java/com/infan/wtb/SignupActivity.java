@@ -17,13 +17,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.infan.wtb.Model.UserModel;
 
 public class SignupActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Button btnlogin;
-    private EditText txtusername;
-    private EditText txtpassword;
+    private Button btnDone;
+    private EditText txtEmail;
+    private EditText txtPassword;
+    private EditText txtLname;
+    private EditText txtFname;
+    private EditText txtHobby;
     private DatabaseReference mDatabase;
 
     @Override
@@ -31,44 +35,56 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        btnlogin=(Button) findViewById(R.id.btnlogin);
-        txtusername=(EditText) findViewById(R.id.txtusername);
-        txtpassword=(EditText) findViewById(R.id.txtpassword);
+        btnDone = (Button) findViewById(R.id.btnDone);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtLname = (EditText) findViewById(R.id.txtLname);
+        txtFname = (EditText) findViewById(R.id.txtFname);
+        txtHobby = (EditText) findViewById(R.id.txtHobby);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("User");
+        mDatabase = FirebaseDatabase.getInstance().getReference("user");
         mAuth = FirebaseAuth.getInstance();
 
-        btnlogin.setOnClickListener(new View.OnClickListener() {
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            String email = txtEmail.getText().toString();
+
             @Override
             public void onClick(View view) {
-                if(txtusername.getText().toString().isEmpty()||txtpassword.getText().toString().isEmpty()){
+                if (txtEmail.getText().toString().isEmpty() || txtPassword.getText().toString().isEmpty()) {
                     Toast.makeText(SignupActivity.this, "Lengkapi Data Username dan Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                final String email = txtusername.getText().toString();
-                String password = txtpassword.getText().toString();
+                final String email = txtEmail.getText().toString();
+                String password = txtPassword.getText().toString();
+                final String lname = txtLname.getText().toString();
+                final String fname = txtFname.getText().toString();
+                final String hobby = txtHobby.getText().toString();
+                final String role = "user";
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d("", "createUserWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Long id = System.currentTimeMillis();
-                                    Toast.makeText(SignupActivity.this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show();
+                                try {
+                                    if (task.isSuccessful()) {
+                                        try {
+                                            Log.d("", "createUserWithEmail:success");
+                                            mDatabase.push().setValue(new UserModel(email, fname, lname, hobby, role));
+                                            Toast.makeText(SignupActivity.this, "Registrasi dan Login Berhasil", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        } catch (Exception ex) {
+                                            finish();
+                                        }
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w("", "createUserWithEmail:" + task.getException(), task.getException());
+                                        Toast.makeText(SignupActivity.this, "Authentication failed. " + task.getException(),
+                                                Toast.LENGTH_LONG).show();
+
+                                    }
+                                } catch (Exception ex) {
                                     finish();
-
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w("", "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(SignupActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
                                 }
-
-                                // ...
                             }
                         });
             }

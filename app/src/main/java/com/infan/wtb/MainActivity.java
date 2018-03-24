@@ -1,7 +1,10 @@
 package com.infan.wtb;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 import com.infan.wtb.Fragment.HomeFragment;
 import com.infan.wtb.Fragment.ProfileFragment;
+import com.infan.wtb.Model.ClassificationResultModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, HomeFragment.newInstance());
         transaction.commit();
+
     }
 
 }

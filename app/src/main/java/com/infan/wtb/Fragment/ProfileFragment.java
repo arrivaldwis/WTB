@@ -15,8 +15,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.infan.wtb.ContentScreen;
 import com.infan.wtb.FormPerson;
+import com.infan.wtb.LoginActivity;
+import com.infan.wtb.Model.UserModel;
 import com.infan.wtb.R;
 
 /**
@@ -27,8 +36,11 @@ public class ProfileFragment extends Fragment {
     SharedPreferences prefs = null;
     LinearLayout linearLayout1;
     ImageView imageView1, btn2;
-    TextView textView1,textInfo;
-
+    TextView textView1, txtEmail, txtFname, txtLname, txtHobby;
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+    DatabaseReference mDatabase;
+    Button btnLogout;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -47,8 +59,23 @@ public class ProfileFragment extends Fragment {
         linearLayout1 = (LinearLayout) rootView.findViewById(R.id.linearLayout1);
         btn2 = (ImageView) rootView.findViewById(R.id.btnEdit);
         imageView1 = (ImageView) rootView.findViewById(R.id.imageView1);
-        textInfo = (TextView) rootView.findViewById(R.id.textInformation);
         textView1 = (TextView) rootView.findViewById(R.id.textView1);
+        txtEmail = (TextView) rootView.findViewById(R.id.txtEmail);
+        txtFname = (TextView) rootView.findViewById(R.id.txtFname);
+        txtLname = (TextView) rootView.findViewById(R.id.txtLname);
+        txtHobby = (TextView) rootView.findViewById(R.id.txtHobby);
+        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference("user");
+
+        try {
+            checkLogin();
+        } catch (Exception ex) {
+            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
         prefs = getActivity().getSharedPreferences("preference", Context.MODE_PRIVATE);
 
         btn2.setOnClickListener(new View.OnClickListener() {
@@ -58,37 +85,69 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        selectData();
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+
         return rootView;
     }
 
-    private void selectData(){
-        if(prefs.getBoolean("profil", false)){
-            String nama_profil = prefs.getString("nama_profil", "");
-            //Toast.makeText(getActivity(), nama_profil, Toast.LENGTH_SHORT).show();
-            textView1.setText(nama_profil);
-            //manggil profil di form person
-            if(nama_profil.contains("gamer")){
-                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.gamecenter));
-                textInfo.setText(getString(R.string.information_gamer));
-            } else if(nama_profil.contains("student")){
-                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.education_student));
-                textInfo.setText(getString(R.string.information_student));
-            } else if(nama_profil.contains("office")){
-                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.briefcase));
-                textInfo.setText(getString(R.string.information_office));
-            } else if(nama_profil.contains("designer")){
-                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.arts));
-                textInfo.setText(getString(R.string.information_designer));
-            }
-        }else{
-            startActivity(new Intent(getActivity(), FormPerson.class));
+    private void checkLogin() {
+        if(currentUser==null) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        } else {
+            selectData();
         }
+    }
+
+    private void selectData(){
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds:dataSnapshot.getChildren()) {
+                    UserModel model = ds.getValue(UserModel.class);
+                    if(currentUser.getEmail().equals(model.getEmail())) {
+                        if(prefs.getBoolean("profil", false)){
+                            String nama_profil = prefs.getString("nama_profil", "");
+                            textView1.setText(nama_profil);
+
+                            txtEmail.setText(model.getEmail());
+                            txtFname.setText(model.getFname());
+                            txtLname.setText(model.getLname());
+                            txtHobby.setText(model.getHobby());
+
+                            if(nama_profil.contains("gamer")){
+                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.gamecenter));
+                            } else if(nama_profil.contains("student")){
+                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.education_student));
+                            } else if(nama_profil.contains("office")){
+                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.briefcase));
+                            } else if(nama_profil.contains("designer")){
+                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.arts));
+                            }
+                        }else{
+                            startActivity(new Intent(getActivity(), FormPerson.class));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
     public void onResume() {
-        selectData();
+        //selectData();
         super.onResume();
     }
 }

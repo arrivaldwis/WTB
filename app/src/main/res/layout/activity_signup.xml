@@ -58,7 +58,8 @@
                     android:padding="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Password"/>
+                    android:hint="Password"
+                    android:inputType="textPassword"/>
                 <EditText
                     android:id="@+id/txtFname"
                     android:background="@drawable/box_edit_text"
@@ -76,7 +77,7 @@
                     android:layout_height="50dp"
                     android:hint="Last Name"/>
                 <EditText
-                    android:id="@+id/txtLname"
+                    android:id="@+id/txtHobby"
                     android:background="@drawable/box_edit_text"
                     android:layout_marginTop="10dp"
                     android:padding="15dp"

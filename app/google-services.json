@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "266540644312-ucrdgeakkvqd8jfp4br82ams26oadjb0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.infan.wtb",
+            "certificate_hash": "daf1262783612ca2429f43f5ee4041434fdd84f1"
+          }
+        },
+        {
           "client_id": "266540644312-svk284t0ugumpabfi64lftq1r11b1nev.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
