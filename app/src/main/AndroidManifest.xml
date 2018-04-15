@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ContentScreen" />
+        <activity android:name=".ContentScreen"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FormPerson"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -26,10 +27,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".PC" />
+        <activity android:name=".PC"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".DetailActivity" />
-        <activity android:name=".HP" />
-        <activity android:name=".Peripheral" />
+        <activity android:name=".HP"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".Peripheral"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".SignupActivity"></activity>
     </application>

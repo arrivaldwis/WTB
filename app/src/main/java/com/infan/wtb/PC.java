@@ -125,4 +125,10 @@ public class PC extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(PC.this, MainActivity.class));
+        finish();
+    }
 }

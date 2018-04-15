@@ -1,5 +1,6 @@
 package com.infan.wtb;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
@@ -150,5 +151,11 @@ public class ContentScreen extends AppCompatActivity {
                 App.dialogProfile(ContentScreen.this, prefs);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ContentScreen.this, MainActivity.class));
+        finish();
     }
 }

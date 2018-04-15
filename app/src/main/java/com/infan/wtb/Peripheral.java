@@ -82,4 +82,10 @@ public class Peripheral extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Peripheral.this, MainActivity.class));
+        finish();
+    }
 }

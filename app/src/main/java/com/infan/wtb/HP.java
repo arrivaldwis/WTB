@@ -62,4 +62,10 @@ public class HP extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(HP.this, MainActivity.class));
+        finish();
+    }
 }

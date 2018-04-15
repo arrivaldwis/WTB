@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 if(checkLogin()) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
                     return;
                 }
 
@@ -76,6 +77,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 if(checkLogin()) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
                     return;
                 }
 
@@ -93,6 +95,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 if(checkLogin()) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
                     return;
                 }
 
@@ -111,6 +114,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 if(checkLogin()) {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
                     return;
                 }
 
