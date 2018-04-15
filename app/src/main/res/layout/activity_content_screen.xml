@@ -31,18 +31,6 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
-            android:background="#000"
-            android:src="@drawable/image_laptop_header"
-            android:id="@+id/image1"/>
-    </RelativeLayout>
-
     <ProgressBar
         android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
@@ -53,8 +41,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 

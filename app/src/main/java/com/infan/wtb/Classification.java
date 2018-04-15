@@ -55,58 +55,32 @@ public class Classification {
                                         if (ds2.getKey().equals("display")) {
                                             if (barang.getDisplay_id() == model.getId()) {
                                                 sum++;
-                                                if (s.equals("gamer"))
-                                                    App.gamer++;
-                                                if (s.equals("student"))
-                                                    App.student++;
-                                                if (s.equals("office"))
-                                                    App.office++;
-                                                if (s.equals("designer"))
-                                                    App.designer++;
                                             }
                                         }
                                         if (ds2.getKey().equals("vga")) {
                                             if (barang.getVga_id() == model.getId()) {
                                                 sum++;
-
-                                                if (s.equals("gamer"))
-                                                    App.gamer++;
-                                                if (s.equals("student"))
-                                                    App.student++;
-                                                if (s.equals("office"))
-                                                    App.office++;
-                                                if (s.equals("designer"))
-                                                    App.designer++;
                                             }
                                         }
                                         if (ds2.getKey().equals("memory")) {
                                             if (barang.getMemory_id() == model.getId()) {
                                                 sum++;
-
-                                                if (s.equals("gamer"))
-                                                    App.gamer++;
-                                                if (s.equals("student"))
-                                                    App.student++;
-                                                if (s.equals("office"))
-                                                    App.office++;
-                                                if (s.equals("designer"))
-                                                    App.designer++;
                                             }
                                         }
                                         if (ds2.getKey().equals("processor")) {
                                             if (barang.getProcessor_id() == model.getId()) {
                                                 sum++;
-
-                                                if (s.equals("gamer"))
-                                                    App.gamer++;
-                                                if (s.equals("student"))
-                                                    App.student++;
-                                                if (s.equals("office"))
-                                                    App.office++;
-                                                if (s.equals("designer"))
-                                                    App.designer++;
                                             }
                                         }
+
+                                        if (s.equals("gamer"))
+                                            App.gamer++;
+                                        if (s.equals("student"))
+                                            App.student++;
+                                        if (s.equals("office"))
+                                            App.office++;
+                                        if (s.equals("designer"))
+                                            App.designer++;
                                     }
 
                                     extractType.add(new BarangTypeModel(barang, s, sum));
@@ -114,23 +88,24 @@ public class Classification {
 
                                 for (BarangTypeModel b : extractType) {
                                     Log.d("WTB3", barang.getNama() + " [" + ds3.getKey() + ". " + model.getName() + " (" + b.getType() + "): " + b.getSum() + "]");
-                                    if(b.getType().equals("gamer"))
-                                        App.gamer += b.getSum();
-                                    if(b.getType().equals("designer"))
-                                        App.designer += b.getSum();
-                                    if(b.getType().equals("office"))
-                                        App.office += b.getSum();
-                                    if(b.getType().equals("student"))
-                                        App.student += b.getSum();
-                                    App.classificationResult.add(new BarangTypeModel(barang, b.getType(), b.getSum()));
+                                    if(b.getBarang().getNama().equals(barang.getNama())) {
+                                        if (b.getType().equals("gamer"))
+                                            App.gamer += b.getSum();
+                                        if (b.getType().equals("designer"))
+                                            App.designer += b.getSum();
+                                        if (b.getType().equals("office"))
+                                            App.office += b.getSum();
+                                        if (b.getType().equals("student"))
+                                            App.student += b.getSum();
+                                    }
                                     sumArray.put(ds.getKey(), b.getSum());
                                 }
                             }
 
+                            int sum = 0;
                             for (String s:arrayType) {
                                 //Toast.makeText(context, App.gamer+", "+App.designer+", "+App.office+", "+App.student, Toast.LENGTH_SHORT).show();
 
-                                int sum = 0;
                                 if(s.equals("gamer"))
                                     sum = App.gamer;
                                 if(s.equals("designer"))

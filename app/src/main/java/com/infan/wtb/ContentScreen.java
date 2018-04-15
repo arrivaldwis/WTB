@@ -77,13 +77,14 @@ public class ContentScreen extends AppCompatActivity {
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference refBarang = database.getReference("barang");
+        final DatabaseReference refBarang = database.getReference("barang");
         final DatabaseReference refKategori = database.getReference("kategori");
 
         refBarang.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 barangList.clear();
+                barangTypeList.clear();
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (final DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -112,7 +113,7 @@ public class ContentScreen extends AppCompatActivity {
                                     KategoriModel kategori = ds.getValue(KategoriModel.class);
                                     if (kategori.getId() == id) {
                                         String imageurl = kategori.getImageurl();
-                                        Picasso.with(ContentScreen.this).load(imageurl).into(image1);
+                                        //Picasso.with(ContentScreen.this).load(imageurl).into(image1);
                                         Log.d("kategoriii", kategori.getId() + "");
                                     }
                                 }

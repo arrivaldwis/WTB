@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -54,6 +55,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
         private BarangModel data;
         private LinearLayout linearLayoutRow;
         private LinearLayout llCompare;
+        private Button btnRefresh;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +64,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
             linearLayoutRow = (LinearLayout) itemView.findViewById(R.id.linearLayoutRow);
             llCompare = (LinearLayout) itemView.findViewById(R.id.llCompare);
+            btnRefresh = (Button) itemView.findViewById(R.id.btnRefresh);
 
             itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -86,8 +89,13 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
     int office = 0;
 
     @Override
-    public void onBindViewHolder (ViewHolder holder,int position) {
+    public void onBindViewHolder (final ViewHolder holder, int position) {
         final BarangModel data = list.get(position);
+
+        designer = 0;
+        student = 0;
+        gamer = 0;
+        office = 0;
 
         holder.tvNama.setText(data.getNama());
         holder.tvDeskripsi.setText(data.getDeskripsi());
@@ -105,17 +113,33 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             }
         });
 
+        loadClassification(holder, data);
+        holder.btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadClassification(holder, data);
+            }
+        });
+
+        //animate(holder);
+    }
+
+    private void loadClassification(ViewHolder holder, BarangModel data) {
+        holder.llCompare.removeAllViewsInLayout();
+
         for (ArrayList<BarangTypeModel> x: barangCompareList) {
             for (BarangTypeModel b:x) {
                 //Toast.makeText(context, b.getBarang().getNama() + " - "+b.getType()+": "+b.getSum(), Toast.LENGTH_SHORT).show();
-                if(b.type.equals("student"))
-                    student = b.getSum();
-                if(b.type.equals("designer"))
-                    designer = b.getSum();
-                if(b.type.equals("office"))
-                    office = b.getSum();
-                if(b.type.equals("gamer"))
-                    gamer = b.getSum();
+                if(b.getBarang().getNama().equals(data.getNama())) {
+                    if (b.type.equals("student"))
+                        student = b.getSum();
+                    if (b.type.equals("designer"))
+                        designer = b.getSum();
+                    if (b.type.equals("office"))
+                        office = b.getSum();
+                    if (b.type.equals("gamer"))
+                        gamer = b.getSum();
+                }
             }
         }
 
@@ -125,10 +149,22 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             TextView tv = new TextView(context);
             int progress = 0;
 
-            ProgressBar p = new ProgressBar(context,
-                    null,
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    300,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+
+            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+
+            params.setMargins(0, 0, 12, 4);
+
+            ProgressBar p = new ProgressBar(context, null,
                     android.R.attr.progressBarStyleHorizontal);
-            p.setMax(4);
+            p.setMax(6);
+            p.setLayoutParams(params2);
 
             if(s.equals("student"))
                 progress = student;
@@ -139,7 +175,8 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             if(s.equals("gamer"))
                 progress = gamer;
 
-            tv.setText(s+"("+progress+")");
+            tv.setText(s.toUpperCase()+" ("+progress+")");
+            tv.setLayoutParams(params);
 
             p.setProgress(progress);
 
@@ -147,8 +184,6 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             ll.addView(p);
             holder.llCompare.addView(ll);
         }
-
-        //animate(holder);
     }
 
     @Override
