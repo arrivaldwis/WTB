@@ -34,7 +34,7 @@ public class Splash extends AppCompatActivity {
         StartAnimation();
         Thread splash = new Thread(){
             public void run(){
-                try{
+                try {
                     sleep(2000);
                 } catch(Exception e){
                     e.printStackTrace();

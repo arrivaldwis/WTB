@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.infan.wtb.Fragment.HomeFragment;
 import com.infan.wtb.Fragment.ProfileFragment;
@@ -57,4 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    int exit = 0;
+    @Override
+    public void onBackPressed() {
+        exit++;
+        Toast.makeText(this, "Back twice for exit", Toast.LENGTH_SHORT).show();
+        if(exit == 2) {
+            super.onBackPressed();
+        }
+    }
 }

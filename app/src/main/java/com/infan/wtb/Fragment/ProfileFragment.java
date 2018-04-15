@@ -101,6 +101,7 @@ public class ProfileFragment extends Fragment {
     private void checkLogin() {
         if(currentUser==null) {
             startActivity(new Intent(getActivity(), LoginActivity.class));
+            getActivity().finish();
         } else {
             selectData();
         }
