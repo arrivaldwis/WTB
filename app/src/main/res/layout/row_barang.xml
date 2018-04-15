@@ -59,7 +59,7 @@
             <LinearLayout
                 android:id="@+id/llCompare"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="100dp"
                 android:orientation="vertical"
                 android:visibility="visible"
                 android:layout_marginTop="4dp">

@@ -150,7 +150,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
             int progress = 0;
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    300,
+                    330,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
 
