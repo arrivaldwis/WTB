@@ -65,24 +65,10 @@ public class SignupActivity extends AppCompatActivity {
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                try {
-                                    if (task.isSuccessful()) {
-                                        try {
-                                            Log.d("", "createUserWithEmail:success");
-                                            mDatabase.push().setValue(new UserModel(email, fname, lname, hobby, role));
-                                            Toast.makeText(SignupActivity.this, "Registrasi dan Login Berhasil", Toast.LENGTH_SHORT).show();
-                                            finish();
-                                        } catch (Exception ex) {
-                                            finish();
-                                        }
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w("", "createUserWithEmail:" + task.getException(), task.getException());
-                                        Toast.makeText(SignupActivity.this, "Authentication failed. " + task.getException(),
-                                                Toast.LENGTH_LONG).show();
-
-                                    }
-                                } catch (Exception ex) {
+                                if (task.isSuccessful()) {
+                                    Log.d("", "createUserWithEmail:success");
+                                    mDatabase.push().setValue(new UserModel(email, fname, lname, hobby, role));
+                                    Toast.makeText(SignupActivity.this, "Registrasi dan Login Berhasil", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             }

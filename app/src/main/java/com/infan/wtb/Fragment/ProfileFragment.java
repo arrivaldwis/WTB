@@ -123,15 +123,17 @@ public class ProfileFragment extends Fragment {
                             txtLname.setText(model.getLname());
                             txtHobby.setText(model.getHobby());
 
-                            if(nama_profil.contains("gamer")){
-                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.gamecenter));
-                            } else if(nama_profil.contains("student")){
-                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.education_student));
-                            } else if(nama_profil.contains("office")){
-                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.briefcase));
-                            } else if(nama_profil.contains("designer")){
-                                imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.arts));
-                            }
+                            try {
+                                if (nama_profil.contains("gamer")) {
+                                    imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.gamecenter));
+                                } else if (nama_profil.contains("student")) {
+                                    imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.education_student));
+                                } else if (nama_profil.contains("office")) {
+                                    imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.briefcase));
+                                } else if (nama_profil.contains("designer")) {
+                                    imageView1.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.arts));
+                                }
+                            } catch (Exception ex) {}
                         }else{
                             startActivity(new Intent(getActivity(), FormPerson.class));
                         }
