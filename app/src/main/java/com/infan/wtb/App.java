@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.perf.FirebasePerformance;
 import com.infan.wtb.Model.BarangTypeModel;
 import com.infan.wtb.Model.UserModel;
 
@@ -39,6 +40,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        //FirebasePerformance.getInstance();
     }
 
     public static void dialogProfile(final Context context, SharedPreferences prefs) {

@@ -61,12 +61,14 @@ public class HomeFragment extends Fragment {
                     return;
                 }
 
-                if(prefs.getBoolean("profil", false)){
-                    Intent intent = new Intent(getActivity(), ContentScreen.class);
-                    intent.putExtra("kategori_id", 1);
-                    startActivity(intent);
-                }else{
-                    startActivity(new Intent(getActivity(), FormPerson.class));
+                if(currentUser.isEmailVerified()) {
+                    if (prefs.getBoolean("profil", false)) {
+                        Intent intent = new Intent(getActivity(), ContentScreen.class);
+                        intent.putExtra("kategori_id", 1);
+                        startActivity(intent);
+                    } else {
+                        startActivity(new Intent(getActivity(), FormPerson.class));
+                    }
                 }
             }
         });
