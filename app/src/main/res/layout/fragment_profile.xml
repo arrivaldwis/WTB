@@ -7,7 +7,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -19,6 +18,7 @@
             android:orientation="vertical"
             android:layout_centerInParent="true"
             android:id="@+id/linearLayout1"
+            android:backgroundTint="@color/colorPrimary"
             android:background="@drawable/circle_white">
             <ImageView
                 android:layout_width="60dp"
@@ -30,13 +30,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_marginTop="6dp"
                 android:layout_gravity="center"
                 android:id="@+id/textView1"/>
         </LinearLayout>
-
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -137,14 +136,45 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="5"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnVerifiy"
+                    android:layout_width="160dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Verify account"
+                    android:textColor="#fff" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnForgot"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Forgot Password"
+                android:textColor="#fff" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnLogout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:layout_alignParentBottom="true"/>
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
 
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="#fff"
+                android:text="Logout"
+                android:layout_margin="8dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
